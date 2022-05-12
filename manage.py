@@ -2,7 +2,7 @@ from flask_script import Manager,Server
 from app import create_app
 
 app=create_app('development')
-
+app.config['SECRET_KEY'] ='1234'
 manager = Manager(app)
 manager.add_command('server',Server)
 
