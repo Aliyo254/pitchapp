@@ -19,3 +19,4 @@ class RegistrationForm(FlaskForm):
     password = PasswordField('Password',validators = [InputRequired(), EqualTo('password_confirm',message = 'Passwords must match')])
     password_confirm = PasswordField('Confirm Passwords',validators = [InputRequired()])
     submit = SubmitField('Sign Up')
+
