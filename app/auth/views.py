@@ -5,6 +5,9 @@ from app.models import User
 from . import auth
 from .forms import LoginForm, RegistrationForm
 
+from ..email import mail_message
+
+
 @auth.route('/login')
 def login():
     login_form = LoginForm()

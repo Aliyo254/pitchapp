@@ -1,7 +1,8 @@
 from flask import render_template, url_for,redirect
+from flask_login import login_required
 from . import main
-from . forms import PitchForm
-from ..models import Pitch
+from . forms import PitchForm,CommentForm
+from ..models import Pitch,Comment
 from .. import db
 
 
@@ -22,3 +23,17 @@ def pitch():
         db.session.commit()
         return redirect(url_for('main.index'))
     return render_template('pitch.html',pitch_form=pitch_form)
+
+@main.route('/comment',methods=['GET','POST'])
+@login_required
+def comment():
+
+    comment_form=CommentForm()
+    if comment_form.validate_on_submit():
+        comment=Comment(comment=comment_form.comment.data)
+        db.session.add(comment)
+        db.session.commit()
+        
+
+    comments=Comment.query.all()
+    return render_template('comment.html',comment_form=comment_form,comments=comments)

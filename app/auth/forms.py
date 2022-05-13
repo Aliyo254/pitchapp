@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField,PasswordField,BooleanField,SubmitField
-from wtforms.validators import InputRequired,Email,EqualTo
+from wtforms.validators import DataRequired,Email,EqualTo
 from wtforms import ValidationError
 from ..models import User
 
@@ -9,18 +9,18 @@ from ..models import User
 
 
 class LoginForm(FlaskForm):
-    email = StringField('Your Email Address',validators=[InputRequired(),Email()])
-    password = PasswordField('Password',validators =[InputRequired()])
+    email = StringField('Your Email Address',validators=[DataRequired(),Email()])
+    password = PasswordField('Password',validators =[DataRequired()])
     remember = BooleanField('Remember me')
     submit = SubmitField('Sign In')
    
 
     
 class RegistrationForm(FlaskForm):
-    email = StringField('Your Email Address',validators=[InputRequired(),Email()])
-    username = StringField('Enter your username',validators = [InputRequired()])
-    password = PasswordField('Password',validators = [InputRequired(), EqualTo('password_confirm',message = 'Passwords must match')])
-    password_confirm = PasswordField('Confirm Passwords',validators = [InputRequired()])
+    email = StringField('Your Email Address',validators=[DataRequired(),Email()])
+    username = StringField('Enter your username',validators = [DataRequired()])
+    password = PasswordField('Password',validators = [DataRequired(), EqualTo('password_confirm',message = 'Passwords must match')])
+    password_confirm = PasswordField('Confirm Passwords',validators = [DataRequired()])
     submit = SubmitField('Sign Up')
 
 
