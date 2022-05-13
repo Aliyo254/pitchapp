@@ -1,7 +1,37 @@
 {%extends 'base.html'%}
 {% import 'bootstrap/wtf.html' as wtf%}
-{% block content %}
-<div class="container">
 
+{% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+{% endblock %}
+{% block content %}
+<div class="heading">
+<h2>sign up to post your own pitch today!</h2>
+<h3>sample pitches</h3>
 </div>
+{%for entry in entries%}
+<div class='col-md-4 pitch'>
+  <h3>category:{{entry.category}}</h3>
+<p>{{entry.pitch}} by {{entry.users.username}}</p>
+
+  <button><a href="{{url_for('main.comment')}}">comment</a></button><button><i class="fa fa-thumbs-up"></i></button><button><i class="fa fa-thumbs-down"></i></button>
+</div>
+{%endfor%}
+<style>
+.category{
+  height: 100px;
+  text-align: center;
+  border-color: black;
+  border-style: solid;
+}
+.pitch{
+  text-align: centre;
+}
+.heading {
+  text-align: center;
+  color: lightblue;
+}
+
+</style>
 {% endblock %}
