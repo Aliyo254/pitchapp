@@ -13,6 +13,8 @@ class User(UserMixin,db.Model):
     username = db.Column(db.String(255))
     email = db.Column(db.String(255),unique = True,index = True)
     pass_secure = db.Column(db.String(255))
+    pitches = db.relationship('Pitch',backref = 'user',lazy = "dynamic")
+    comment = db.relationship('Comment',backref = 'user',lazy = "dynamic")
 
     @property
     def password(self):
@@ -35,6 +37,7 @@ class Pitch(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     pitch=db.Column(db.String(255))
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    comments = db.relationship('Comment',backref = 'pitch',lazy = "dynamic")
 
 class Comment(db.Model):
     __tablename__='comments'
