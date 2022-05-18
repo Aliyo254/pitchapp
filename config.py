@@ -5,6 +5,8 @@ class Config:
     '''
     class config
     '''
+    SQLALCHEMY_DATABASE_URI='postgresql+psycopg2://alinur:admin@localhost/pitch'
+    SECRET_KEY=os.environ.get("SECRET_KEY")
 
 
 class ProdConfig(Config):
@@ -15,6 +17,9 @@ class ProdConfig(Config):
         Config: The parent configuration class with General configuration settings
     '''
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    SQLALCHEMY_DATABASE_URI=os.environ.get("DATABASE_URL")
+    if SQLALCHEMY_DATABASE_URI.startswith('postgres://'): 
+        SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace('postgres://','postgresql://',1)
     SECRET_KEY = os.environ.get('SECRET_KEY')
 
 

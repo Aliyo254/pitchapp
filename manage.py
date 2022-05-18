@@ -5,8 +5,8 @@ from  flask_migrate import Migrate, MigrateCommand
 from app.models import User
 
 
-app=create_app('production')
-app.config['SECRET_KEY'] ='1234'
+app=create_app('development')
+
 manager = Manager(app)
 migrate = Migrate(app,db)
 manager.add_command('db',MigrateCommand)
